@@ -1,9 +1,10 @@
 
-const CACHE_NAME = 'uniteam-cache-v1';
+const CACHE_NAME = 'uniteam-cache-v2';
 const urlsToCache = [
   './',
   './index.html',
-  './manifest.json'
+  './manifest.json',
+  './icon.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -13,6 +14,7 @@ self.addEventListener('install', (event) => {
         return cache.addAll(urlsToCache);
       })
   );
+  self.skipWaiting();
 });
 
 self.addEventListener('fetch', (event) => {
@@ -40,4 +42,5 @@ self.addEventListener('activate', (event) => {
       );
     })
   );
+  self.clients.claim();
 });

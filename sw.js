@@ -3,7 +3,6 @@ const CACHE_NAME = 'uniteam-cache-v1';
 const urlsToCache = [
   './',
   './index.html',
-  './index.tsx',
   './manifest.json'
 ];
 

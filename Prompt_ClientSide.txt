@@ -1,0 +1,41 @@
+
+Act as a world-class senior frontend engineer. Create a professional, RTL-supported React application for employee attendance tracking named "Uniteam".
+
+### Core Technology Stack:
+- React (Functional Components, Hooks)
+- Tailwind CSS
+- Lucide React (Icons)
+- XLSX (for Excel reports)
+- Cairo Font (Google Fonts)
+
+### UI/UX Design Guidelines:
+- **Style:** Modern, clean, and professional. 
+- **Colors:** Primary Blue (#2563eb), Slate/Zinc for dark backgrounds, Emerald for success, Rose/Red for errors.
+- **Header:** White/Blurry backdrop with a centered logo and status indicators.
+- **Watermark:** Add a subtle diagonal "Uniteam" or "Unilever" watermark across the background via CSS.
+- **RTL Support:** Ensure the layout is fully right-to-left.
+
+### Main Features (Client-Side Only):
+1. **Device Fingerprinting:** Use a unique ID stored in localStorage to bind a phone/browser to one employee account.
+2. **Registration System:**
+   - Fields: Full Name, 14-digit National ID, Password, Job Title (from dropdown), Default Branch (from dropdown).
+   - Validation: Prevent duplicate National IDs or multiple accounts on the same device.
+3. **Attendance/Departure (GPS Verified):**
+   - Check-in/Check-out buttons.
+   - Requires GPS geolocation. Calculate distance from selected branch.
+   - Deny registration if distance > Branch Radius (default 100m).
+   - **Time Logic:** Compare actual time with default (09:00 - 17:00). 
+   - Labeling: "حضور مبكر", "حضور متأخر", "انصراف مبكر", "انصراف متأخر".
+   - **Mandatory Reason:** If attendance is "Late", user MUST fill a "Notes/Reason" text area before submitting.
+4. **Admin Dashboard:**
+   - Manage Branches (Name, Lat/Lng, Radius).
+   - Manage Jobs (Title).
+   - Manage Users (Reset device binding, edit details).
+   - Local Data persistence: Use localStorage for everything.
+5. **Reports Tab:**
+   - Filter by Date range (From/To).
+   - Filter by Job Title.
+   - Export filtered data to Excel (.xlsx).
+
+### Data Storage:
+Use a robust local state management synchronized with `localStorage` for all persistent data.

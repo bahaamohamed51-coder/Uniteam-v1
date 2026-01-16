@@ -1,0 +1,38 @@
+
+Act as a world-class senior Full-stack engineer. Create a secure, RTL-supported React application named "Uniteam" integrated with Google Sheets (via Apps Script).
+
+### Security Architecture (Critical Fixes):
+1. **Password Hashing:** Use SHA-256 (Web Crypto API) to hash passwords before sending them to the cloud. NEVER store or transmit plain-text passwords.
+2. **Token-based Auth:** Implement a "System Secret Token" in the Apps Script. The React app must send this token in headers/params for every request to prevent unauthorized database access.
+3. **Data Sanitization:** The `getData` endpoint in Apps Script must NOT return password hashes to the frontend.
+4. **Configuration Safety:** Do NOT pass the Sync URL in plain text via URL parameters. Use a secure initialization step or environment variables.
+
+### Main Features:
+1. **Login & Registration:**
+   - Employee Login: Authenticate using National ID and Hashed Password.
+   - Device Binding: Link the account to a specific browser fingerprint.
+   - Registration: Collect Name, 14-digit ID, Hashed Password, Job, and Branch.
+2. **Attendance (GPS & Logic):**
+   - Fetch branch coordinates from the cloud.
+   - GPS check: user must be within [radius] meters of the branch.
+   - Attendance Logic: Calculate diff from shift hours (e.g., 09:00 to 17:00).
+   - Mandatory Reason: "Reason" field is required if the user is checking in late.
+3. **Cloud Sync (Apps Script):**
+   - Spreadsheet structure: [Users], [Attendance], [Branches], [Jobs], [ReportAccounts].
+   - Post attendance logs to Google Sheets in real-time.
+4. **Reporting (Multi-level Access):**
+   - Separate "Report Accounts" with limited job visibility.
+   - Admin Login: Full control over settings and all reports.
+   - Filters: Date range, Job Titles.
+   - Export: Professional Excel file download.
+
+### UI/UX Design:
+- **Theme:** Dark Slate/Blue professional dashboard.
+- **Font:** Cairo (Arabic).
+- **Layout:** Responsive RTL grid.
+- **Status:** Visual cloud sync indicators (Online/Syncing/Offline).
+- **Interactive Map Pin:** For choosing or viewing branch locations.
+
+### Deliverables:
+1. React code using Tailwind and Lucide.
+2. `google-apps-script.js` backend code with token verification and POST/GET handling.
